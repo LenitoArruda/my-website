@@ -1,34 +1,44 @@
-.navbar{
+.navbar {
     display: flex;
     justify-content: space-between;
-    background-color: transparent;
+    background-color: #272727;
     padding: 1em 5em;
-    height: 15%;
+    height: 4.5em;
     width: 100%;
+    border-bottom: 3px solid;
+    border-color: rgb(68, 175, 223);
 }
 
-.list{
+.logo {
+    margin-left: 2em;
+    width: 150px;
+    transition: 0.3s;
+}
+
+.logo:hover {
+    fill: rgb(68, 175, 223);
+    width: 155px;
+}
+
+.list {
     display: flex;
     list-style: none;
     align-items: center;
     width: 40%;
 }
 
-.logo{
-    width: 120px;
-}
-
-.item{
+.item {
     margin: 1em;
     font-weight: bold;
+
 }
 
-.item a{
-    
+.item a {
     color: rgb(240, 240, 240);
     text-decoration: none;
+    transition: 0.3s;
 }
 
-.item a:hover{
-    color: rgb(68,175,223);
+.item a:hover {
+    color: rgb(62, 145, 184);
 }
