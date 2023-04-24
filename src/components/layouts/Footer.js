@@ -1,7 +1,7 @@
 import styles from "./Footer.module.css";
 import { FaFacebook, FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 
-function Footer(props) {
+function Footer() {
   return (
     <footer className={styles.footer}>
       <ul className={styles.social_list}>

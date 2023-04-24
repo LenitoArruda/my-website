@@ -6,9 +6,19 @@
     transition: 0.5s;
     border-radius: 10px;
     margin-top: 2em;
+    font-size: 30px;
 }
 
 .btn:hover {
     background-color: rgb(50, 132, 170);
 
+}
+
+
+@media screen and (max-width: 1100px) {
+    .btn {
+
+        font-size: 1.4em;
+
+    }
 }
