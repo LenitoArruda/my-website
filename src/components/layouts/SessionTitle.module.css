@@ -1,0 +1,23 @@
+.session {
+    display: flex;
+    width: 100vw;
+    height: 250px;
+    align-items: center;
+    justify-content: center;
+
+
+
+
+
+}
+
+.title {
+    padding: 0.5em 1.5em;
+    color: rgb(68, 175, 223);
+    border: 5px solid rgb(68, 175, 223);
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 3em;
+    text-transform: uppercase;
+    margin-bottom: 0.3em;
+    font-style: bold;
+}

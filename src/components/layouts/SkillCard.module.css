@@ -1,0 +1,15 @@
+.skill {
+    width: 55vw;
+    height: 60vh;
+    border-radius: 50px;
+    background-color: #272727;
+    margin-left: 4em;
+    display: inline-flex;
+    padding: 3em;
+    box-shadow: 0 0 20px;
+    color: rgb(100, 197, 241);
+}
+
+.logo {
+    width: 20em;
+}

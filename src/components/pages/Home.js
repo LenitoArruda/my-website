@@ -1,25 +1,35 @@
 import styles from "./Home.module.css";
+
+//Layouts
 import LinkButton from "../layouts/LinkButton";
+import SessionTitle from "../layouts/SessionTitle";
+import TextShpere from "../layouts/TextShpere";
+import SkillCard from "../layouts/SkillCard";
+
+//React Hooks
+import { useEffect } from "react";
+
+//3D effects
+import { Parallax } from "react-parallax";
+
+//Aaos fade effects
+import AOS from "aos";
+import "aos/dist/aos.css";
+
+//Importing images
 import BgAbout from "../../img/home-about.svg";
 import BgCta from "../../img/home-cta.svg";
 import imgProfile from "../../img/profile.svg";
-import imgAvatar from "../../img/avatar.svg";
-import { Parallax } from "react-parallax";
-import { useEffect } from "react";
-//import AOS from "aos";
-//import "aos/dist/aos.css"
-import TextShpere from "../../components/layouts/TextShpere";
 
 function Home() {
+  AOS.init();
   useEffect(() => {
-    const intersectionObserver = new IntersectionObserver((entries) => {
-      if (entries.some((entry) => entry.isIntersecting)) {
-        console.log("Elemento esta visivel!", entries);
-      }
+    window.addEventListener("resize", function (event) {
+      const text = document.getElementById("text");
+      if (this.window.innerWidth > 1100)
+        text.setAttribute("data-aos", "fade-left");
+      else text.setAttribute("data-aos", "fade-down");
     });
-    intersectionObserver.observe(document.querySelector("#about"));
-
-    return () => intersectionObserver.disconnect();
   });
 
   return (
@@ -36,29 +46,50 @@ function Home() {
             </h1>
             <LinkButton text="View my work" to="/projects" />
           </div>
-          <div className={styles.avatar}>
-            <img src={imgAvatar} alt="avatar" />
-          </div>
         </session>
       </Parallax>
 
       <Parallax strength={350} bgImage={BgAbout}>
         <session className={styles.about_content} id="about">
-          <div className={styles.text}>
-            <p>
-              Este é um texto explicando sobre a minha vida. Blablabla Blablabla
-            </p>
-            <p>
-              Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
-              Blablabl
-            </p>
-            <p>Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla.</p>
-          </div>
-          <div className={styles.picture}>
-            <img src={imgProfile} alt="profile" />
+          <SessionTitle text="about me" />
+          <div className={styles.about_card}>
+            <div
+              className={styles.text}
+              data-aos="fade-left"
+              id="text"
+              data-aos-duration="500"
+            >
+              <p>
+                Este é um texto explicando sobre a minha vida. Blablabla
+                Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
+                Blablabla.
+              </p>
+            </div>
+            <div
+              className={styles.picture}
+              data-aos="zoom-in"
+              id="picture"
+              data-aos-duration="500"
+            >
+              <img src={imgProfile} alt="profile" />
+            </div>
           </div>
         </session>
       </Parallax>
+
+      <session className={styles.skills_content} id="skills">
+        <SessionTitle text="skills" />
+        <div className={styles.skill_card}>
+          <div
+            data-aos="zoom-in"
+            data-aos-duration="3000"
+            className={styles.skills_shpere}
+          >
+            <TextShpere />
+          </div>
+          <SkillCard skill="a" />
+        </div>
+      </session>
     </div>
   );
 }

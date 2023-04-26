@@ -1,29 +1,28 @@
-.text-shpere {
+/* Importing google font  */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600;700;800;900&display=swap');
+
+.text_shpere {
     position: relative;
-    top: 0;
-    width: 100%;
-    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: red;
 }
 
-.tagcloud {
+.text_shpere span {
     display: inline-block;
-    top: 100;
-    left: 0;
-    font-family: sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
     letter-spacing: 0.0625em;
     font-size: 1.3em;
-}
-
-.tagcloud--item {
-    color: red;
+    color: white;
     text-transform: uppercase;
+    transition: 0.3s;
 }
 
-.tagcloud--item:hover {
+/* Change color of each text in sphere on hover   */
+
+.text_shpere span:hover {
     color: rgb(68, 175, 223);
+    cursor: pointer;
+
 }
