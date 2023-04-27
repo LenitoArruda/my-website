@@ -86,21 +86,11 @@
 
 }
 
-.skills_shpere {
-    width: 30vw;
-    margin-right: 4em;
-}
-
 .skill_card {
     display: flex;
-    align-items: center;
-    justify-content: center;
-
+    flex-direction: row;
+    width: 100%;
 }
-
-
-
-
 
 @media screen and (max-width: 1100px) {
     .about_card {

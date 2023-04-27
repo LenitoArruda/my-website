@@ -1,15 +1,78 @@
 .skill {
     width: 55vw;
     height: 60vh;
+    min-height: 550px;
     border-radius: 50px;
     background-color: #272727;
     margin-left: 4em;
-    display: inline-flex;
+    display: flex;
     padding: 3em;
     box-shadow: 0 0 20px;
     color: rgb(100, 197, 241);
 }
 
+/* HEADER */
 .logo {
     width: 20em;
+    display: flex;
+}
+
+.logo img {
+    width: 20em;
+
+}
+
+.info {
+    display: block;
+    padding-left: 4em;
+    width: 80%;
+}
+
+.info_header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    padding-right: 3em;
+
+}
+
+.info_experience {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info_experience p {
+    font-size: 1em;
+}
+
+.info_header h4 {
+    font-size: 4em;
+    border: 3px solid rgb(100, 197, 241);
+    border-radius: 100%;
+    padding: 0.1em 0.2em;
+    padding-right: 0.3em;
+    margin-bottom: 0.1em;
+
+}
+
+
+.info_title {
+    text-transform: uppercase;
+    font-size: 4em;
+}
+
+/* BODY */
+.info_desc {
+    text-transform: uppercase;
+    padding-top: 2em;
+    height: 32vh;
+    font-size: 1.5em;
+    color: white;
+}
+
+.star_img {
+    width: 80px;
+    padding-right: 1.2em;
 }

@@ -8,9 +8,9 @@ function SessionTitle({ text }) {
   AOS.init();
   return (
     <header className={sytles.session}>
-      <p className={sytles.title} data-aos="zoom-in" data-aos-duration="500">
+      <h2 className={sytles.title} data-aos="zoom-in" data-aos-duration="500">
         {text}
-      </p>
+      </h2>
     </header>
   );
 }

@@ -1,5 +1,8 @@
 import styles from "./Home.module.css";
 
+//Axios
+import axios from "axios";
+
 //Layouts
 import LinkButton from "../layouts/LinkButton";
 import SessionTitle from "../layouts/SessionTitle";
@@ -7,7 +10,7 @@ import TextShpere from "../layouts/TextShpere";
 import SkillCard from "../layouts/SkillCard";
 
 //React Hooks
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 //3D effects
 import { Parallax } from "react-parallax";
@@ -23,6 +26,50 @@ import imgProfile from "../../img/profile.svg";
 
 function Home() {
   AOS.init();
+
+  const [skills, setSkills] = useState([]);
+  const [skill, setSkill] = useState([]);
+  const [selectedSkill, setSelectedSkill] = useState();
+  const headers = {
+    "Content-type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  };
+
+  useEffect(() => {
+    skills.map((value) => {
+      if (value.name === selectedSkill.toLowerCase()) {
+        axios
+          .get(`http://localhost:3333/skills/${value._id}`, {
+            mode: "no-cors",
+            headers: headers,
+          })
+          .then((resp) => {
+            setSkill(resp.data);
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  }, [selectedSkill]);
+
+  window.addEventListener("mouseup", (evt) => {
+    if (evt.target.className === "tagcloud--item") {
+      setSelectedSkill(evt.target.innerText);
+    }
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3333/skills", {
+        mode: "no-cors",
+        headers: headers,
+      })
+      .then((resp) => {
+        setSkills(resp.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
   useEffect(() => {
     window.addEventListener("resize", function (event) {
       const text = document.getElementById("text");
@@ -87,7 +134,22 @@ function Home() {
           >
             <TextShpere />
           </div>
-          <SkillCard skill="a" />
+          <div
+            data-aos="fade-left"
+            data-aos-duration="300"
+            className={styles.skills_shpere}
+          >
+            {skill && (
+              <SkillCard
+                name={skill.name}
+                description={skill.description}
+                stars={skill.stars}
+                experience={skill.experience}
+                img={skill.img}
+                key={skill._id}
+              />
+            )}
+          </div>
         </div>
       </session>
     </div>

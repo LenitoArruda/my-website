@@ -16,10 +16,11 @@ const TextShpere = () => {
         "JavaScript",
         "React",
         "NodeJS",
-        "Postgree",
+        "Postgre",
         "MongoDB",
         "MySQL",
         "GitHub",
+        "Git",
       ];
 
       const options = {
