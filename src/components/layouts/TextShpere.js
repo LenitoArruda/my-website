@@ -21,6 +21,7 @@ const TextShpere = () => {
         "MySQL",
         "GitHub",
         "Git",
+        "General",
       ];
 
       const options = {

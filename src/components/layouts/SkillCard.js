@@ -3,15 +3,16 @@ import imgStar from "../../img/star.svg";
 import imgActiveStar from "../../img/active-star.svg";
 
 function SkillCard({ name, description, stars, experience, img }) {
-  let imgSkill = "";
+  let imgSkill = require("../../img/skills/html5.svg");
   if (img) {
     imgSkill = require(`../../img/skills/${img}`);
-  } else {
-    imgSkill = require("../../img/skills/html5.svg");
   }
+
   let ordenedStars = [];
   for (let i = 1; i <= 5; i++) {
-    i <= stars ? ordenedStars.push("on") : ordenedStars.push("off");
+    i <= stars
+      ? ordenedStars.push({ status: "on", id: i })
+      : ordenedStars.push({ status: "off", id: i });
   }
 
   return (
@@ -30,10 +31,20 @@ function SkillCard({ name, description, stars, experience, img }) {
         <p className={styles.info_desc}>{description}</p>
         <div className={styles.star}>
           {ordenedStars.map((type) =>
-            type === "on" ? (
-              <img src={imgActiveStar} alt="star" className={styles.star_img} />
+            type.status === "on" ? (
+              <img
+                src={imgActiveStar}
+                alt="star"
+                className={styles.star_img}
+                key={type.id}
+              />
             ) : (
-              <img src={imgStar} alt="star" className={styles.star_img} />
+              <img
+                src={imgStar}
+                alt="star"
+                className={styles.star_img}
+                key={type.id}
+              />
             )
           )}
         </div>

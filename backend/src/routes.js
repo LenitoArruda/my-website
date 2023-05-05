@@ -3,7 +3,7 @@ const routes = Router();
 
 //Importing Controllers
 const SkillController = require("./Controllers/SkillController");
-const ProjectController = require("./Controllers/ProjectController");
+//const ProjectController = require("./Controllers/ProjectController");
 
 //Skills routes
 routes.post("/skills", SkillController.store);

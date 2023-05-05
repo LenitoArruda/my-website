@@ -8,6 +8,7 @@ import LinkButton from "../layouts/LinkButton";
 import SessionTitle from "../layouts/SessionTitle";
 import TextShpere from "../layouts/TextShpere";
 import SkillCard from "../layouts/SkillCard";
+import GeneralCard from "../layouts/GeneralCard";
 
 //React Hooks
 import { useEffect, useState } from "react";
@@ -82,7 +83,7 @@ function Home() {
   return (
     <div className={styles.home_container}>
       <Parallax strength={350} bgImage={BgCta}>
-        <session className={styles.cta_content}>
+        <div className={styles.cta_content}>
           <div className={styles.cta}>
             <h1>
               <p>Hello, I'm Lenito Arruda.</p>
@@ -93,25 +94,13 @@ function Home() {
             </h1>
             <LinkButton text="View my work" to="/projects" />
           </div>
-        </session>
+        </div>
       </Parallax>
 
       <Parallax strength={350} bgImage={BgAbout}>
-        <session className={styles.about_content} id="about">
+        <div className={styles.about_content} id="about">
           <SessionTitle text="about me" />
           <div className={styles.about_card}>
-            <div
-              className={styles.text}
-              data-aos="fade-left"
-              id="text"
-              data-aos-duration="500"
-            >
-              <p>
-                Este é um texto explicando sobre a minha vida. Blablabla
-                Blablabla Blablabla Blablabla Blablabla Blablabla Blablabla
-                Blablabla.
-              </p>
-            </div>
             <div
               className={styles.picture}
               data-aos="zoom-in"
@@ -120,11 +109,38 @@ function Home() {
             >
               <img src={imgProfile} alt="profile" />
             </div>
+            <div className={styles.text} id="text">
+              <p>
+                Hello! My name is Lenito and I am a Full Stack developer
+                passionate about technology and programming. My goal is to
+                develop innovative solutions that can improve people's lives and
+                make the world a better place.
+              </p>
+
+              <p>
+                Since I was a child, I have always been curious and interested
+                in technology. Over time, I discovered programming and fell in
+                love with the process of creating solutions that can help solve
+                problems and make people's lives easier.
+              </p>
+              <p>
+                Over the years, I have dedicated myself to studying and
+                improving my skills in different areas of programming. In
+                addition, I always seek new challenges and learning
+                opportunities to continue evolving as a professional.
+              </p>
+              <p>
+                If you want to know more about me and my work, check out my
+                [page name with more in-depth context about you] page and get in
+                touch to discuss how I can help your company grow and stand out
+                in the market.
+              </p>
+            </div>
           </div>
-        </session>
+        </div>
       </Parallax>
 
-      <session className={styles.skills_content} id="skills">
+      <div className={styles.skills_content} id="skills">
         <SessionTitle text="skills" />
         <div className={styles.skill_card}>
           <div
@@ -139,19 +155,21 @@ function Home() {
             data-aos-duration="300"
             className={styles.skills_shpere}
           >
-            {skill && (
+            {!skill._id && <GeneralCard skills={skills} />}
+            {skill.name === "general" && <GeneralCard skills={skills} />}
+            {skill.name !== "general" && skill._id && (
               <SkillCard
+                key={skill._id}
                 name={skill.name}
                 description={skill.description}
                 stars={skill.stars}
                 experience={skill.experience}
                 img={skill.img}
-                key={skill._id}
               />
             )}
           </div>
         </div>
-      </session>
+      </div>
     </div>
   );
 }

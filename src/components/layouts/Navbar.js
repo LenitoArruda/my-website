@@ -17,7 +17,7 @@ function Navbar(props) {
             <Link to="/projects">Projects</Link>
           </li>
           <li className={styles.item}>
-            <Link to="/company">Company</Link>
+            <Link to="/skills">Skills</Link>
           </li>
           <li className={styles.item}>
             <Link to="/contact">Contact</Link>

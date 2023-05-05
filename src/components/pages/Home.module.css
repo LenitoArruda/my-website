@@ -5,7 +5,7 @@
 /* CTA SESSION */
 .cta_content {
     height: 100vh;
-    min-height: 500px;
+    min-height: 550px;
     width: 100vw;
     align-items: center;
     justify-content: center;
@@ -39,14 +39,14 @@
 .about_content {
     display: block;
     height: 80vh;
-    min-height: 800px;
+    min-height: 1800px;
 }
 
 .about_card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-
     margin: 5em;
 }
 
@@ -58,7 +58,7 @@
     border-radius: 600px;
     border: 5px solid rgb(68, 175, 223);
     width: 350px;
-    margin-left: -5em;
+    margin-bottom: -10em;
 
 }
 
@@ -69,13 +69,19 @@
     border-radius: 10px;
     border: 1px solid rgb(68, 175, 223);
     padding: 2em 4em;
+    padding-top: 5em;
     color: white;
     font-size: 2vw;
-    max-height: 70vh;
+
     min-height: 250px;
     z-index: 0;
 
 }
+
+.text p {
+    padding-top: 1em;
+}
+
 
 /* SKILLS SESSION */
 
@@ -92,26 +98,13 @@
     width: 100%;
 }
 
+@media screen and (max-width: 2100px) {
+
+    .cta {}
+
+}
+
 @media screen and (max-width: 1100px) {
-    .about_card {
-        flex-direction: column-reverse;
-        margin-top: 0;
-    }
-
-    .picture img {
-        margin-left: 0;
-        width: 250px;
-    }
-
-    .text {
-        padding: 2em;
-        padding-top: 3.5em;
-        margin-top: -3em;
-        font-size: 1.5em;
-        align-items: center;
-        justify-content: center;
-    }
-
 
     .cta {
         height: 40%;
