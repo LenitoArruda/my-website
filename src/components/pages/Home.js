@@ -82,7 +82,7 @@ function Home() {
 
   return (
     <div className={styles.home_container}>
-      <Parallax strength={350} bgImage={BgCta}>
+      <Parallax strength={50} bgImage={BgCta}>
         <div className={styles.cta_content}>
           <div className={styles.cta}>
             <h1>
