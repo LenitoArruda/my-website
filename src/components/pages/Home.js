@@ -24,6 +24,7 @@ import "aos/dist/aos.css";
 import BgAbout from "../../img/home-about.svg";
 import BgCta from "../../img/home-cta.svg";
 import imgProfile from "../../img/profile.svg";
+import bgEngine from "../../img/engine.svg";
 
 function Home() {
   AOS.init();
@@ -38,26 +39,36 @@ function Home() {
   };
 
   useEffect(() => {
-    skills.map((value) => {
-      if (value.name === selectedSkill.toLowerCase()) {
-        axios
-          .get(`http://localhost:3333/skills/${value._id}`, {
-            mode: "no-cors",
-            headers: headers,
-          })
-          .then((resp) => {
-            setSkill(resp.data);
-          })
-          .catch((err) => console.log(err));
-      }
-    });
+    var handleSkill = skills.find(
+      (skill) => skill.name === selectedSkill.toLowerCase()
+    );
+
+    if (handleSkill && handleSkill.name === selectedSkill.toLowerCase()) {
+      axios
+        .get(`http://localhost:3333/skills/${handleSkill._id}`, {
+          mode: "no-cors",
+          headers: headers,
+        })
+        .then((resp) => {
+          setSkill(resp.data);
+        })
+        .catch((err) => console.log(err));
+    }
   }, [selectedSkill]);
 
-  window.addEventListener("mouseup", (evt) => {
-    if (evt.target.className === "tagcloud--item") {
-      setSelectedSkill(evt.target.innerText);
-    }
-  });
+  useEffect(() => {
+    const handleMouseUp = (evt) => {
+      if (evt.target.className.includes("tagcloud--item")) {
+        setSelectedSkill(evt.target.innerText);
+      }
+    };
+
+    window.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+    };
+  }, []);
 
   useEffect(() => {
     axios
@@ -71,18 +82,28 @@ function Home() {
       .catch((err) => console.log(err));
   }, []);
 
+  const [rotation, setRotation] = useState(0);
+  const [opRotation, setOpRotation] = useState(0);
+
   useEffect(() => {
-    window.addEventListener("resize", function (event) {
-      const text = document.getElementById("text");
-      if (this.window.innerWidth > 1100)
-        text.setAttribute("data-aos", "fade-left");
-      else text.setAttribute("data-aos", "fade-down");
-    });
-  });
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const rotationValue = scrollY * 0.06; // Ajuste a velocidade de rotação conforme necessário
+      const opRotationValue = scrollY * -0.06; // Ajuste a velocidade de rotação conforme necessário
+      setRotation(rotationValue);
+      setOpRotation(opRotationValue);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div className={styles.home_container}>
-      <Parallax strength={50} bgImage={BgCta}>
+      <Parallax strength={350} bgImage={BgCta}>
         <div className={styles.cta_content}>
           <div className={styles.cta}>
             <h1>
@@ -109,7 +130,7 @@ function Home() {
             >
               <img src={imgProfile} alt="profile" />
             </div>
-            <div className={styles.text} id="text">
+            <div className={styles.text} id="text" data-aos="zoom-in-down">
               <p>
                 Hello! My name is Lenito and I am a Full Stack developer
                 passionate about technology and programming. My goal is to
@@ -141,6 +162,26 @@ function Home() {
       </Parallax>
 
       <div className={styles.skills_content} id="skills">
+        <div className={styles.bg_engines}>
+          <img
+            className={styles.engine_1}
+            src={bgEngine}
+            alt="Engine"
+            style={{ transform: `rotate(${rotation}deg)` }}
+          />
+          <img
+            className={styles.engine_2}
+            src={bgEngine}
+            alt="Engine"
+            style={{ transform: `rotate(${opRotation}deg)` }}
+          />
+          <img
+            className={styles.engine_3}
+            src={bgEngine}
+            alt="Engine"
+            style={{ transform: `rotate(${rotation}deg)` }}
+          />
+        </div>
         <SessionTitle text="skills" />
         <div className={styles.skill_card}>
           <div
@@ -169,6 +210,10 @@ function Home() {
             )}
           </div>
         </div>
+      </div>
+
+      <div className={styles.projects_content}>
+        <SessionTitle text="projects" />
       </div>
     </div>
   );

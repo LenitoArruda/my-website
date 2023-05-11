@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import styles from "./TextShpere.module.css";
 
@@ -6,12 +6,48 @@ import styles from "./TextShpere.module.css";
 import TagCloud from "TagCloud";
 
 const TextShpere = () => {
+  const [prevSkill, setPrevSkill] = useState([]);
+
+  const handleMouseUp = (evt) => {
+    console.log(evt.target);
+    if (evt.target.className.includes("tagcloud--item")) {
+      setPrevSkill(evt.target);
+
+      if (prevSkill.textContent) {
+        prevSkill.style.color = "";
+        prevSkill.style.textShadow = "";
+      }
+      evt.target.style.color = "rgb(68, 175, 223)";
+      evt.target.style.textShadow = "0 0 30px rgb(68, 175, 223)";
+    }
+  };
+
+  const handleFirstLoad = () => {
+    const container = document.querySelector(".tagcloud");
+    const targetSpan = container.querySelector("span.tagcloud--item");
+
+    console.log(targetSpan.textContent);
+    if (targetSpan.textContent === "General") {
+      targetSpan.style.color = "rgb(68, 175, 223)";
+      targetSpan.style.textShadow = "0 0 30px rgb(68, 175, 223)";
+      setPrevSkill(targetSpan);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("load", handleFirstLoad);
+
+    return () => {
+      window.removeEventListener("load", handleFirstLoad);
+    };
+  }, []);
+
   // Animation settings for Text Cloud
   useEffect(() => {
     return () => {
       const container = ".tagcloud";
       const texts = [
-        "CSS",
+        "General",
         "HTML",
         "JavaScript",
         "React",
@@ -21,7 +57,7 @@ const TextShpere = () => {
         "MySQL",
         "GitHub",
         "Git",
-        "General",
+        "CSS",
       ];
 
       const options = {
@@ -39,7 +75,7 @@ const TextShpere = () => {
     <>
       <div className={styles.text_shpere}>
         {/* span tag className must be "tagcloud"  */}
-        <span className="tagcloud"></span>
+        <span className="tagcloud" onClick={handleMouseUp}></span>
       </div>
     </>
   );

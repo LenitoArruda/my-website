@@ -28,13 +28,6 @@
 }
 
 
-
-.star_img {
-    width: 2em;
-    padding-right: 0.3em;
-}
-
-
 .info_skills.slide_backward {
     animation: slide_backward 1s backwards;
 }
@@ -42,10 +35,6 @@
 .info_skills.slide_forward {
     animation: slide_forward 1s forwards;
 }
-
-
-
-
 
 
 

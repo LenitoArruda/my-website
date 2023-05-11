@@ -38,7 +38,6 @@ class SkillController {
     try {
       const { id } = req.params;
       const skill = await SkillModel.findById(id);
-      console.log(skill);
 
       if (!skill) {
         return res.status(400).json({ message: "Skill does not exist" });
