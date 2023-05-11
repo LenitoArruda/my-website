@@ -1,13 +1,14 @@
 .skills {
-    width: 55vw;
-    height: 60vh;
-    min-height: 650px;
+    width: 100%;
+    max-width: 900px;
+    min-width: 700px;
+    min-height: 580px;
     border-radius: 50px;
     background-color: #272727fd;
-    margin-left: 4em;
+    margin: 0 1.5%;
     display: flex;
     flex-direction: column;
-    padding: 3em;
+    padding: 2em;
     box-shadow: 0 0 20px;
     color: rgb(100, 197, 241);
 }
@@ -17,7 +18,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-right: 3em;
+    padding-right: 2.2%;
+    padding-left: 4%;
 
 }
 
@@ -33,7 +35,7 @@
 }
 
 .info_header h4 {
-    font-size: 4em;
+    font-size: 2em;
     border: 3px solid rgb(100, 197, 241);
     border-radius: 100%;
     padding: 0.1em 0.2em;
@@ -51,7 +53,7 @@
 
 .info_title {
     text-transform: uppercase;
-    font-size: 4em;
+    font-size: 3em;
 }
 
 /* BODY */

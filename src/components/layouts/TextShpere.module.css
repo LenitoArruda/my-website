@@ -5,7 +5,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 4em;
+    margin: 0 2em;
+
 }
 
 .text_shpere span {
@@ -13,7 +14,7 @@
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     letter-spacing: 0.0625em;
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: white;
     text-transform: uppercase;
     transition: 0.3s;

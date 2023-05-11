@@ -9,12 +9,14 @@ import SessionTitle from "../layouts/SessionTitle";
 import TextShpere from "../layouts/TextShpere";
 import SkillCard from "../layouts/SkillCard";
 import GeneralCard from "../layouts/GeneralCard";
+import Footer from "../layouts/Footer";
+import Navbar from "../layouts/Navbar";
 
 //React Hooks
 import { useEffect, useState } from "react";
 
 //3D effects
-import { Parallax } from "react-parallax";
+import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
 
 //Aaos fade effects
 import AOS from "aos";
@@ -31,7 +33,7 @@ function Home() {
 
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState([]);
-  const [selectedSkill, setSelectedSkill] = useState();
+  const [selectedSkill, setSelectedSkill] = useState("general");
   const headers = {
     "Content-type": "application/json",
     "Access-Control-Allow-Origin": "*",
@@ -88,8 +90,8 @@ function Home() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const rotationValue = scrollY * 0.06; // Ajuste a velocidade de rotação conforme necessário
-      const opRotationValue = scrollY * -0.06; // Ajuste a velocidade de rotação conforme necessário
+      const rotationValue = scrollY * -0.06;
+      const opRotationValue = scrollY * 0.06;
       setRotation(rotationValue);
       setOpRotation(opRotationValue);
     };
@@ -103,118 +105,126 @@ function Home() {
 
   return (
     <div className={styles.home_container}>
-      <Parallax strength={350} bgImage={BgCta}>
-        <div className={styles.cta_content}>
-          <div className={styles.cta}>
-            <h1>
-              <p>Hello, I'm Lenito Arruda.</p>
-              <p>
-                I'm a{" "}
-                <span className={styles.name}>full-stack web developer</span>.
-              </p>
-            </h1>
-            <LinkButton text="View my work" to="/projects" />
-          </div>
-        </div>
-      </Parallax>
+      <Parallax pages={5}>
+        <ParallaxLayer
+          style={{
+            backgroundImage: `url(${BgCta})`,
+            backgroundSize: "cover",
+          }}
+        />
 
-      <Parallax strength={350} bgImage={BgAbout}>
-        <div className={styles.about_content} id="about">
-          <SessionTitle text="about me" />
-          <div className={styles.about_card}>
-            <div
-              className={styles.picture}
-              data-aos="zoom-in"
-              id="picture"
-              data-aos-duration="500"
-            >
-              <img src={imgProfile} alt="profile" />
-            </div>
-            <div className={styles.text} id="text" data-aos="zoom-in-down">
-              <p>
-                Hello! My name is Lenito and I am a Full Stack developer
-                passionate about technology and programming. My goal is to
-                develop innovative solutions that can improve people's lives and
-                make the world a better place.
-              </p>
+        <ParallaxLayer>
+          <Navbar />
+        </ParallaxLayer>
 
-              <p>
-                Since I was a child, I have always been curious and interested
-                in technology. Over time, I discovered programming and fell in
-                love with the process of creating solutions that can help solve
-                problems and make people's lives easier.
-              </p>
-              <p>
-                Over the years, I have dedicated myself to studying and
-                improving my skills in different areas of programming. In
-                addition, I always seek new challenges and learning
-                opportunities to continue evolving as a professional.
-              </p>
-              <p>
-                If you want to know more about me and my work, check out my
-                [page name with more in-depth context about you] page and get in
-                touch to discuss how I can help your company grow and stand out
-                in the market.
-              </p>
+        <ParallaxLayer offset={0} speed={0.3}>
+          <div className={styles.cta_content}>
+            <div className={styles.cta}>
+              <h1>
+                <p>Hello, I'm Lenito Arruda.</p>
+                <p>
+                  I'm a{" "}
+                  <span className={styles.name}>full-stack web developer</span>.
+                </p>
+              </h1>
+              <LinkButton text="View my work" to="/projects" />
             </div>
           </div>
-        </div>
-      </Parallax>
+        </ParallaxLayer>
 
-      <div className={styles.skills_content} id="skills">
-        <div className={styles.bg_engines}>
-          <img
-            className={styles.engine_1}
-            src={bgEngine}
-            alt="Engine"
-            style={{ transform: `rotate(${rotation}deg)` }}
-          />
-          <img
-            className={styles.engine_2}
-            src={bgEngine}
-            alt="Engine"
-            style={{ transform: `rotate(${opRotation}deg)` }}
-          />
-          <img
-            className={styles.engine_3}
-            src={bgEngine}
-            alt="Engine"
-            style={{ transform: `rotate(${rotation}deg)` }}
-          />
-        </div>
-        <SessionTitle text="skills" />
-        <div className={styles.skill_card}>
-          <div
-            data-aos="zoom-in"
-            data-aos-duration="3000"
-            className={styles.skills_shpere}
-          >
-            <TextShpere />
+        <ParallaxLayer offset={1}>
+          <div className={styles.about_content} id="about">
+            <SessionTitle text="about me" />
+            <div className={styles.about_card}>
+              <div
+                className={styles.picture}
+                data-aos="zoom-in"
+                id="picture"
+                data-aos-duration="500"
+              >
+                <img src={imgProfile} alt="profile" />
+              </div>
+              <div className={styles.text} id="text" data-aos="zoom-in-down">
+                <p>
+                  Hello! My name is Lenito and I am a Full Stack developer
+                  passionate about technology and programming. My goal is to
+                  develop innovative solutions that can improve people's lives
+                  and make the world a better place.
+                </p>
+
+                <p>
+                  Since I was a child, I have always been curious and interested
+                  in technology. Over time, I discovered programming and fell in
+                  love with the process of creating solutions that can help
+                  solve problems and make people's lives easier.
+                </p>
+                <p>
+                  Over the years, I have dedicated myself to studying and
+                  improving my skills in different areas of programming. In
+                  addition, I always seek new challenges and learning
+                  opportunities to continue evolving as a professional.
+                </p>
+                <p>
+                  If you want to know more about me and my work, check out my
+                  [page name with more in-depth context about you] page and get
+                  in touch to discuss how I can help your company grow and stand
+                  out in the market.
+                </p>
+              </div>
+            </div>
           </div>
-          <div
-            data-aos="fade-left"
-            data-aos-duration="300"
-            className={styles.skills_shpere}
-          >
-            {!skill._id && <GeneralCard skills={skills} />}
-            {skill.name === "general" && <GeneralCard skills={skills} />}
-            {skill.name !== "general" && skill._id && (
-              <SkillCard
-                key={skill._id}
-                name={skill.name}
-                description={skill.description}
-                stars={skill.stars}
-                experience={skill.experience}
-                img={skill.img}
+        </ParallaxLayer>
+        <ParallaxLayer offset={2.7}>
+          <div className={styles.skills_content} id="skills">
+            <div className={styles.bg_engines}>
+              <img
+                className={styles.engine_1}
+                src={bgEngine}
+                alt="Engine"
+                style={{ transform: `rotate(${rotation}deg)` }}
               />
-            )}
-          </div>
-        </div>
-      </div>
+              <img
+                className={styles.engine_2}
+                src={bgEngine}
+                alt="Engine"
+                style={{ transform: `rotate(${opRotation}deg)` }}
+              />
+              <img
+                className={styles.engine_3}
+                src={bgEngine}
+                alt="Engine"
+                style={{ transform: `rotate(${rotation}deg)` }}
+              />
+            </div>
+            <SessionTitle text="skills" />
+            <div className={styles.skill_card}>
+              <TextShpere />
 
-      <div className={styles.projects_content}>
-        <SessionTitle text="projects" />
-      </div>
+              {(!skill._id || skill.name === "general") && (
+                <GeneralCard skills={skills} />
+              )}
+              {skill.name !== "general" && skill._id && (
+                <SkillCard
+                  key={skill._id}
+                  name={skill.name}
+                  description={skill.description}
+                  stars={skill.stars}
+                  experience={skill.experience}
+                  img={skill.img}
+                />
+              )}
+            </div>
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={4}>
+          <div className={styles.projects_content}>
+            <SessionTitle text="projects" />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={4.8} style={{ bottom: "0%" }}>
+          <Footer />
+        </ParallaxLayer>
+      </Parallax>
     </div>
   );
 }

@@ -1,26 +1,23 @@
 .skill {
-    width: 55vw;
-    height: 60vh;
-    min-height: 650px;
+    width: 100%;
+    max-width: 900px;
+    min-width: 700px;
+    min-height: 580px;
     border-radius: 50px;
     background-color: #272727fd;
-    margin-left: 4em;
+    margin: 0 1.5%;
     display: flex;
-    padding: 3em;
+    padding: 2em;
     box-shadow: 0 0 20px;
     color: rgb(100, 197, 241);
 }
 
 /* HEADER */
 .logo {
-    width: 20em;
+    width: 25%;
     display: flex;
 }
 
-.logo img {
-    width: 20em;
-
-}
 
 .info {
     display: block;
@@ -32,7 +29,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    padding-right: 3em;
+    padding-right: 1em;
 
 }
 
@@ -48,7 +45,7 @@
 }
 
 .info_header h4 {
-    font-size: 4em;
+    font-size: 2em;
     border: 3px solid rgb(100, 197, 241);
     border-radius: 100%;
     padding: 0.1em 0.2em;
@@ -60,7 +57,7 @@
 
 .info_title {
     text-transform: uppercase;
-    font-size: 4em;
+    font-size: 3em;
 }
 
 /* BODY */
@@ -73,6 +70,6 @@
 }
 
 .star_img {
-    width: 80px;
+    width: 13%;
     padding-right: 1.2em;
 }

@@ -4,18 +4,11 @@
     margin: 0 auto;
     flex-wrap: wrap;
     flex: 1;
+    background: #1e1e1e;
+    height: 100%;
 }
 
 
 .min-height {
     min-height: 70%;
-}
-
-.start {
-    justify-content: flex-start;
-}
-
-.column {
-    flex-direction: column;
-    justify-content: flex-start;
 }

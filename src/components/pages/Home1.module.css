@@ -1,7 +1,5 @@
 .home_container {
-    width: 100%;
-    height: 100%;
-
+    overflow: hidden;
 }
 
 /* CTA SESSION */
@@ -89,6 +87,7 @@
 
 .skills_content {
     display: block;
+    background: #1e1e1e;
     padding-bottom: 110px;
 
 }
@@ -97,7 +96,6 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-    justify-content: space-between;
 }
 
 .bg_engines {
@@ -110,7 +108,6 @@
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    z-index: -1;
 }
 
 .engine_1 {
