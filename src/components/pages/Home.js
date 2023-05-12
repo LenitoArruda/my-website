@@ -117,7 +117,7 @@ function Home() {
           <Navbar />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={0.3}>
+        <ParallaxLayer offset={0.2} speed={0.3}>
           <div className={styles.cta_content}>
             <div className={styles.cta}>
               <h1>
