@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import styles from "./Home.module.css";
 
 //Axios
@@ -16,14 +17,13 @@ import Navbar from "../layouts/Navbar";
 import { useEffect, useState } from "react";
 
 //3D effects
-import { Parallax, ParallaxLayer, IParallax } from "@react-spring/parallax";
+import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
 //Aaos fade effects
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 //Importing images
-import BgAbout from "../../img/home-about.svg";
 import BgCta from "../../img/home-cta.svg";
 import imgProfile from "../../img/profile.svg";
 import bgEngine from "../../img/engine.svg";
@@ -110,6 +110,7 @@ function Home() {
           style={{
             backgroundImage: `url(${BgCta})`,
             backgroundSize: "cover",
+            overflow: "hidden",
           }}
         />
 

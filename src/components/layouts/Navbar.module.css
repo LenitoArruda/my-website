@@ -5,9 +5,9 @@
     padding: 1em 5em;
     height: 4.5em;
     width: 100%;
-    border-bottom: 3px solid;
-    border-color: rgb(68, 175, 223);
+    box-shadow: 0 0 5px 3px rgb(68, 175, 223);
 }
+
 
 
 .icon {
@@ -21,17 +21,12 @@
 }
 
 .logo:hover {
-    fill: rgb(68, 175, 223);
     width: 155px;
 }
 
-.short_logo {
-    position: absolute;
-    width: 35px;
-    visibility: hidden;
-
+.logoHidden {
+    display: none;
 }
-
 
 .list {
     display: flex;
@@ -61,19 +56,14 @@
 @media screen and (max-width: 900px) {
     .navbar {
         flex-direction: row-reverse;
-        flex-wrap: wrap;
-        justify-content: space-around;
-
-        .list {
-            display: hidden;
-        }
+        justify-content: space-between;
     }
 
     .navbar ul {
-        visibility: hidden;
+        display: none;
     }
 
-    .navbarMenu {
+    .sidebar {
         display: flex;
         top: 0;
         flex-direction: column;
@@ -83,33 +73,30 @@
         padding: 1em 5em;
         height: 100vh;
         width: 200px;
-        box-shadow: 0 0 10px 3px rgb(68, 175, 223);
-        border-color: rgb(68, 175, 223);
+        box-shadow: 0 0 8px 3px rgb(68, 175, 223);
+
     }
 
-    .navbarMenu ul {
+    .noScroll {
+        overflow: hidden;
+    }
+
+    .sidebar ul {
         top: 0;
-        display: flexbox;
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         width: 100%;
 
     }
 
-    .navbarMenu ul li {
+    .sidebar ul li {
         margin-bottom: 3em;
     }
 
-    .navbarMenu .logo {
-        visibility: hidden;
-        position: absolute;
-    }
 
-    .navbarMenu .icon {
-        display: block;
-        z-index: 4;
-        left: 10%;
+    .sidebar .icon {
         top: 5%;
         width: fit-content;
         height: 44px;
@@ -179,4 +166,22 @@
     top: 15px;
     transform: rotate(135deg);
     box-shadow: 0 -2px 5px rgba(255, 254, 254, 0.329);
+}
+
+.fadeIn {
+    animation: fadeIn 1s;
+}
+
+.fadeInTwo {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
