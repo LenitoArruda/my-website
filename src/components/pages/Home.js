@@ -103,22 +103,44 @@ function Home() {
     };
   }, []);
 
+  const [mode, setMode] = useState(false);
+
+  const handleClique = () => {
+    setMode(!mode);
+  };
+
   return (
     <div className={styles.home_container}>
-      <Parallax pages={5}>
+      <Parallax
+        pages={5}
+        style={{
+          overflow: mode ? "hidden" : "",
+        }}
+      >
         <ParallaxLayer
           style={{
             backgroundImage: `url(${BgCta})`,
             backgroundSize: "cover",
             overflow: "hidden",
+            filter: mode ? "blur(5px)" : "none",
           }}
         />
 
-        <ParallaxLayer>
-          <Navbar />
+        <ParallaxLayer
+          style={{
+            zIndex: "99",
+          }}
+        >
+          <Navbar handleClique={handleClique} mode={mode} />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0.2} speed={0.3}>
+        <ParallaxLayer
+          offset={0.2}
+          speed={0.3}
+          style={{
+            filter: mode ? "blur(5px)" : "none",
+          }}
+        >
           <div className={styles.cta_content}>
             <div className={styles.cta}>
               <h1>

@@ -1,24 +1,18 @@
 import { Link } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logo from "../../img/logo.svg";
-import { useState } from "react";
 
-function Navbar() {
-  const [mode, setMode] = useState(false);
-
-  const ToggleMode = () => {
-    setMode(!mode);
-  };
-
+function Navbar({ handleClique, mode }) {
   return (
     <nav
-      className={
-        mode ? `${styles.sidebar}` : `${styles.navbar} ${styles.fadeIn}`
-      }
+      key={mode}
+      className={`${styles.navbar} ${mode ? styles.sidebar : ""} ${
+        styles.fadeIn
+      }`}
     >
       <div
         className={mode ? `${styles.icon} ${styles.iconActive}` : styles.icon}
-        onClick={ToggleMode}
+        onClick={handleClique}
       >
         <div className={`${styles.hamburguer} ${styles.hamburguerIcon}`}></div>
       </div>

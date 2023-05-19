@@ -9,7 +9,6 @@ const TextShpere = () => {
   const [prevSkill, setPrevSkill] = useState([]);
 
   const handleMouseUp = (evt) => {
-    console.log(evt.target);
     if (evt.target.className.includes("tagcloud--item")) {
       setPrevSkill(evt.target);
 
@@ -25,8 +24,6 @@ const TextShpere = () => {
   const handleFirstLoad = () => {
     const container = document.querySelector(".tagcloud");
     const targetSpan = container.querySelector("span.tagcloud--item");
-
-    console.log(targetSpan.textContent);
     if (targetSpan.textContent === "General") {
       targetSpan.style.color = "rgb(68, 175, 223)";
       targetSpan.style.textShadow = "0 0 30px rgb(68, 175, 223)";

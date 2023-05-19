@@ -52,7 +52,6 @@
 }
 
 
-
 @media screen and (max-width: 900px) {
     .navbar {
         flex-direction: row-reverse;
@@ -64,25 +63,20 @@
     }
 
     .sidebar {
+        min-height: 350px;
         display: flex;
         top: 0;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         background-color: #272727;
-        padding: 1em 5em;
         height: 100vh;
         width: 200px;
         box-shadow: 0 0 8px 3px rgb(68, 175, 223);
 
     }
 
-    .noScroll {
-        overflow: hidden;
-    }
-
     .sidebar ul {
-        top: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -92,7 +86,7 @@
     }
 
     .sidebar ul li {
-        margin-bottom: 3em;
+        margin-bottom: 5vh;
     }
 
 
@@ -106,16 +100,14 @@
 
     .navbar .icon {
         z-index: 4;
-        left: 10%;
-        top: 5%;
+        left: 80px;
+        top: 35px;
         width: fit-content;
         height: 44px;
         cursor: pointer;
     }
 
     .hamburguer {
-        top: 50%;
-        left: 1%;
         width: 37px;
         height: 4px;
         background-color: white;
