@@ -107,52 +107,54 @@
         cursor: pointer;
     }
 
-    .hamburguer {
-        width: 37px;
-        height: 4px;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        transition: 0.5s;
-    }
-
-    .hamburguer::before {
-        top: -12px;
-        content: '';
-        position: absolute;
-        width: 37px;
-        height: 4px;
-        background: white;
-        transition: 0.5s;
-    }
-
-    .hamburguer::after {
-        top: 12px;
-        content: '';
-        position: absolute;
-        width: 37px;
-        height: 4px;
-        background: white;
-        transition: 0.5s;
-    }
 
 
 
 }
 
-.icon.iconActive .hamburguer {
+.hamburguer {
+    width: 37px;
+    height: 4px;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: 0.5s;
+}
+
+.hamburguer::before {
+    top: -12px;
+    content: '';
+    position: absolute;
+    width: 37px;
+    height: 4px;
+    background: white;
+    transition: 0.5s;
+}
+
+.hamburguer::after {
+    top: 12px;
+    content: '';
+    position: absolute;
+    width: 37px;
+    height: 4px;
+    background: white;
+    transition: 0.5s;
+}
+
+
+.iconActive .hamburguer {
 
     background: transparent;
     box-shadow: 0 2px 5px transparent;
 }
 
-.icon.iconActive .hamburguer::after {
+.iconActive .hamburguer::after {
 
     top: 15px;
     transform: rotate(225deg);
     box-shadow: 0 -2px 5px rgba(255, 254, 254, 0.329);
 }
 
-.icon.iconActive .hamburguer::before {
+.iconActive .hamburguer::before {
 
     background: white;
     top: 15px;
@@ -164,9 +166,6 @@
     animation: fadeIn 1s;
 }
 
-.fadeInTwo {
-    animation: fadeIn 1s;
-}
 
 @keyframes fadeIn {
     0% {

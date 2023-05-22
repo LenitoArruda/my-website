@@ -114,7 +114,7 @@ function Home() {
       <Parallax
         pages={5}
         style={{
-          overflow: mode ? "hidden" : "",
+          overflow: mode ? "hidden" : "none",
         }}
       >
         <ParallaxLayer
