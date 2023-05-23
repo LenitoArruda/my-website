@@ -14,7 +14,7 @@ import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
 
 //React Hooks
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 //3D effects
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
@@ -30,7 +30,7 @@ import bgEngine from "../../img/engine.svg";
 
 function Home() {
   AOS.init();
-
+  const parallaxRef = useRef();
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState([]);
   const [selectedSkill, setSelectedSkill] = useState("general");
@@ -40,6 +40,7 @@ function Home() {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   };
 
+  //When selecttedSkill is changed updates de skillCard accordiing the skill selected
   useEffect(() => {
     var handleSkill = skills.find(
       (skill) => skill.name === selectedSkill.toLowerCase()
@@ -58,6 +59,7 @@ function Home() {
     }
   }, [selectedSkill]);
 
+  //When users left click verify if the target is the text sphere and attribute the skill selected to selectedSkill
   useEffect(() => {
     const handleMouseUp = (evt) => {
       if (evt.target.className.includes("tagcloud--item")) {
@@ -72,6 +74,7 @@ function Home() {
     };
   }, []);
 
+  //Get skills from my backend
   useEffect(() => {
     axios
       .get("http://localhost:3333/skills", {
@@ -84,37 +87,72 @@ function Home() {
       .catch((err) => console.log(err));
   }, []);
 
+  //Rotate engines when users scroll down or up
   const [rotation, setRotation] = useState(0);
   const [opRotation, setOpRotation] = useState(0);
 
   useEffect(() => {
+    const container = document.querySelector(".mainParallax");
+
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      const scrollY = parallaxRef.current.current;
       const rotationValue = scrollY * -0.06;
       const opRotationValue = scrollY * 0.06;
+
       setRotation(rotationValue);
       setOpRotation(opRotationValue);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    container.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      container.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  //mode is used to alternate menu and sidebar menu
   const [mode, setMode] = useState(false);
 
   const handleClique = () => {
     setMode(!mode);
   };
 
+  //Verify if screen width is larger than 900px to disable sidebar menu
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 900) setMode(false);
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  //When users left, click verify if the target is not sidebar menu to disable sidebar menu
+  useEffect(() => {
+    const handleMouseUp2 = (evt) => {
+      if (!evt.target.className.includes("sidebar")) setMode(false);
+    };
+
+    window.addEventListener("mouseup", handleMouseUp2);
+
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp2);
+    };
+  }, []);
+
   return (
     <div className={styles.home_container}>
       <Parallax
+        className="mainParallax"
+        ref={parallaxRef}
         pages={5}
         style={{
-          overflow: mode ? "hidden" : "none",
+          overflow: mode ? "hidden" : "auto",
         }}
       >
         <ParallaxLayer
@@ -128,7 +166,7 @@ function Home() {
 
         <ParallaxLayer
           style={{
-            zIndex: "99",
+            zIndex: mode ? "1" : "0",
           }}
         >
           <Navbar handleClique={handleClique} mode={mode} />
