@@ -19,17 +19,12 @@ import { useEffect, useState, useRef } from "react";
 //3D effects
 import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 
-//Aaos fade effects
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 //Importing images
 import BgCta from "../../img/home-cta.svg";
 import imgProfile from "../../img/profile.svg";
 import bgEngine from "../../img/engine.svg";
 
 function Home() {
-  AOS.init();
   const parallaxRef = useRef();
   const [skills, setSkills] = useState([]);
   const [skill, setSkill] = useState([]);
@@ -74,7 +69,7 @@ function Home() {
     };
   }, []);
 
-  //Get skills from my backend
+  //Get skills from backend
   useEffect(() => {
     axios
       .get("http://localhost:3333/skills", {
@@ -112,6 +107,7 @@ function Home() {
 
   //mode is used to alternate menu and sidebar menu
   const [mode, setMode] = useState(false);
+  const [phoneMode, setPhoneMode] = useState(false);
 
   const handleClique = () => {
     setMode(!mode);
@@ -121,6 +117,9 @@ function Home() {
   useEffect(() => {
     function handleResize() {
       if (window.innerWidth > 900) setMode(false);
+      if (window.innerWidth < 500) {
+        setPhoneMode(true);
+      } else setPhoneMode(false);
     }
 
     window.addEventListener("resize", handleResize);
@@ -132,16 +131,16 @@ function Home() {
     };
   }, []);
 
-  //When users left, click verify if the target is not sidebar menu to disable sidebar menu
+  //When users left click outside from sidebar menu, it closes sidebar
   useEffect(() => {
-    const handleMouseUp2 = (evt) => {
+    const handleMouseUp = (evt) => {
       if (!evt.target.className.includes("sidebar")) setMode(false);
     };
 
-    window.addEventListener("mouseup", handleMouseUp2);
+    window.addEventListener("mouseup", handleMouseUp);
 
     return () => {
-      window.removeEventListener("mouseup", handleMouseUp2);
+      window.removeEventListener("mouseup", handleMouseUp);
     };
   }, []);
 
@@ -161,6 +160,8 @@ function Home() {
             backgroundSize: "cover",
             overflow: "hidden",
             filter: mode ? "blur(5px)" : "none",
+            minHeight: "500px",
+            border: "none",
           }}
         />
 
@@ -177,6 +178,7 @@ function Home() {
           speed={0.3}
           style={{
             filter: mode ? "blur(5px)" : "none",
+            minHeight: "700px",
           }}
         >
           <div className={styles.cta_content}>
@@ -197,15 +199,10 @@ function Home() {
           <div className={styles.about_content} id="about">
             <SessionTitle text="about me" />
             <div className={styles.about_card}>
-              <div
-                className={styles.picture}
-                data-aos="zoom-in"
-                id="picture"
-                data-aos-duration="500"
-              >
+              <div className={styles.picture} id="picture">
                 <img src={imgProfile} alt="profile" />
               </div>
-              <div className={styles.text} id="text" data-aos="zoom-in-down">
+              <div className={styles.text} id="text">
                 <p>
                   Hello! My name is Lenito and I am a Full Stack developer
                   passionate about technology and programming. My goal is to
@@ -235,28 +232,35 @@ function Home() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={2.7}>
+        <ParallaxLayer
+          offset={2.2}
+          style={{
+            zIndex: "-1",
+          }}
+        >
+          <div className={styles.bg_engines}>
+            <img
+              className={styles.engine_1}
+              src={bgEngine}
+              alt="Engine"
+              style={{ transform: `rotate(${rotation}deg)` }}
+            />
+            <img
+              className={styles.engine_2}
+              src={bgEngine}
+              alt="Engine"
+              style={{ transform: `rotate(${opRotation}deg)` }}
+            />
+            <img
+              className={styles.engine_3}
+              src={bgEngine}
+              alt="Engine"
+              style={{ transform: `rotate(${rotation}deg)` }}
+            />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={phoneMode ? 2.15 : 2}>
           <div className={styles.skills_content} id="skills">
-            <div className={styles.bg_engines}>
-              <img
-                className={styles.engine_1}
-                src={bgEngine}
-                alt="Engine"
-                style={{ transform: `rotate(${rotation}deg)` }}
-              />
-              <img
-                className={styles.engine_2}
-                src={bgEngine}
-                alt="Engine"
-                style={{ transform: `rotate(${opRotation}deg)` }}
-              />
-              <img
-                className={styles.engine_3}
-                src={bgEngine}
-                alt="Engine"
-                style={{ transform: `rotate(${rotation}deg)` }}
-              />
-            </div>
             <SessionTitle text="skills" />
             <div className={styles.skill_card}>
               <TextShpere />
@@ -277,7 +281,7 @@ function Home() {
             </div>
           </div>
         </ParallaxLayer>
-        <ParallaxLayer offset={4}>
+        <ParallaxLayer offset={4.3}>
           <div className={styles.projects_content}>
             <SessionTitle text="projects" />
           </div>

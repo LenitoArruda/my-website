@@ -22,12 +22,12 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-left: 4em;
     font-size: 1.5vw;
     color: white;
     background-color: rgba(0, 0, 0, 0.527);
     backdrop-filter: blur(10px);
     border-radius: 30px;
+    margin-top: 60px;
 }
 
 .name {
@@ -37,41 +37,30 @@
 /* ABOUT SESSION */
 .about_content {
     display: block;
-    height: 80vh;
-    min-height: 1800px;
 }
 
 .about_card {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
     justify-content: center;
     align-items: center;
-    margin: 5em;
+    height: 100%;
+    padding: 0em 3em;
 }
 
-.picture {
-    z-index: 1;
-}
 
 .picture img {
     border-radius: 600px;
     border: 5px solid rgb(68, 175, 223);
     width: 350px;
-    margin-bottom: -10em;
 
 }
 
 
 .text {
-    background-color: rgba(0, 0, 0, 0.527);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    border: 1px solid rgb(68, 175, 223);
-    padding: 2em 4em;
-    padding-top: 5em;
     color: white;
-    font-size: 2vw;
-
+    font-size: 1.1em;
+    padding: 2em;
     min-height: 250px;
     z-index: 0;
 
@@ -113,23 +102,23 @@
 
 .engine_1 {
     position: absolute;
-    width: 25vw;
+    width: 24vw;
     right: -10%;
-    top: 0;
+    top: 6%;
 
 }
 
 .engine_2 {
     position: absolute;
-    width: 25vw;
+    width: 24vw;
     right: 9%;
-    top: 25%;
+    top: 28%;
 
 }
 
 .engine_3 {
     position: absolute;
-    width: 25vw;
+    width: 24vw;
     right: -10%;
     top: 50%;
 }
@@ -144,20 +133,76 @@
     background: #1e1e1e;
 }
 
-@media screen and (max-width: 2100px) {}
+
+@media screen and (max-width: 1400px) {
+    .skill_card {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+
+}
+
 
 @media screen and (max-width: 1100px) {
 
+
+    /* CTA SESSION */
     .cta {
-        height: 40%;
+        height: 10%;
         width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
         padding: 3em;
         font-size: 1.2em;
-        margin: 0;
+
+
     }
+
+    /* ABOUT SESSION */
+
+    .about_card {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .text {
+        margin-top: -20px;
+        font-size: 1.05em;
+    }
+
+    .picture img {
+
+        width: 20vw;
+
+    }
+
+
+}
+
+@media screen and (max-width: 700px) {
+
+    .text {
+        font-size: 0.97em;
+    }
+}
+
+@media screen and (max-width: 500px) {
+
+    .cta {
+        margin: 0;
+        padding: 2em;
+    }
+
+    .picture img {
+
+        width: 25vw;
+
+    }
+
+    .text {
+        font-size: 0.92em;
+    }
+
 
 }

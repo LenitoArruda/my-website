@@ -28,8 +28,14 @@
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
     .title {
         font-size: 2em;
+        margin-top: 50px;
+
+    }
+
+    .session {
+        height: 200px;
     }
 }
