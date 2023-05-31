@@ -12,6 +12,8 @@ import SkillCard from "../layouts/SkillCard";
 import GeneralCard from "../layouts/GeneralCard";
 import Footer from "../layouts/Footer";
 import Navbar from "../layouts/Navbar";
+import Engines from "../layouts/Engines";
+import MenuSkills from "../layouts/MenuSkills";
 
 //React Hooks
 import { useEffect, useState, useRef } from "react";
@@ -22,7 +24,6 @@ import { Parallax, ParallaxLayer } from "@react-spring/parallax";
 //Importing images
 import BgCta from "../../img/home-cta.svg";
 import imgProfile from "../../img/profile.svg";
-import bgEngine from "../../img/engine.svg";
 
 function Home() {
   const parallaxRef = useRef();
@@ -35,7 +36,7 @@ function Home() {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   };
 
-  //When selecttedSkill is changed updates de skillCard accordiing the skill selected
+  //When selecttedSkill is changed updates skillCard acording the skill selected
   useEffect(() => {
     var handleSkill = skills.find(
       (skill) => skill.name === selectedSkill.toLowerCase()
@@ -80,29 +81,6 @@ function Home() {
         setSkills(resp.data);
       })
       .catch((err) => console.log(err));
-  }, []);
-
-  //Rotate engines when users scroll down or up
-  const [rotation, setRotation] = useState(0);
-  const [opRotation, setOpRotation] = useState(0);
-
-  useEffect(() => {
-    const container = document.querySelector(".mainParallax");
-
-    const handleScroll = () => {
-      const scrollY = parallaxRef.current.current;
-      const rotationValue = scrollY * -0.06;
-      const opRotationValue = scrollY * 0.06;
-
-      setRotation(rotationValue);
-      setOpRotation(opRotationValue);
-    };
-
-    container.addEventListener("scroll", handleScroll);
-
-    return () => {
-      container.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   //mode is used to alternate menu and sidebar menu
@@ -232,37 +210,21 @@ function Home() {
             </div>
           </div>
         </ParallaxLayer>
+
         <ParallaxLayer
-          offset={2.2}
+          offset={2.1}
           style={{
             zIndex: "-1",
           }}
         >
-          <div className={styles.bg_engines}>
-            <img
-              className={styles.engine_1}
-              src={bgEngine}
-              alt="Engine"
-              style={{ transform: `rotate(${rotation}deg)` }}
-            />
-            <img
-              className={styles.engine_2}
-              src={bgEngine}
-              alt="Engine"
-              style={{ transform: `rotate(${opRotation}deg)` }}
-            />
-            <img
-              className={styles.engine_3}
-              src={bgEngine}
-              alt="Engine"
-              style={{ transform: `rotate(${rotation}deg)` }}
-            />
-          </div>
+          <Engines parallaxRef={parallaxRef} />
         </ParallaxLayer>
+
         <ParallaxLayer offset={phoneMode ? 2.15 : 2}>
           <div className={styles.skills_content} id="skills">
             <SessionTitle text="skills" />
             <div className={styles.skill_card}>
+              <MenuSkills skills={skills} />
               <TextShpere />
 
               {(!skill._id || skill.name === "general") && (
@@ -281,11 +243,13 @@ function Home() {
             </div>
           </div>
         </ParallaxLayer>
+
         <ParallaxLayer offset={4.3}>
           <div className={styles.projects_content}>
             <SessionTitle text="projects" />
           </div>
         </ParallaxLayer>
+
         <ParallaxLayer offset={4.8} style={{ bottom: "0%" }}>
           <Footer />
         </ParallaxLayer>
