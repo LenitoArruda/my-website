@@ -58,7 +58,11 @@ function Home() {
   //When users left click verify if the target is the text sphere and attribute the skill selected to selectedSkill
   useEffect(() => {
     const handleMouseUp = (evt) => {
-      if (evt.target.className.includes("tagcloud--item")) {
+      console.log(evt.target.className);
+      if (
+        evt.target.className.includes("tagcloud--item") ||
+        evt.target.className.includes("MenuSkills_skill")
+      ) {
         setSelectedSkill(evt.target.innerText);
       }
     };

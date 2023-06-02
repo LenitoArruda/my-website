@@ -3,41 +3,34 @@
 }
 
 @media screen and (max-width: 1400px) {
-
     .skill_menu {
         display: flex;
-        overflow-x: auto;
         white-space: nowrap;
         cursor: grab;
+        overflow: hidden;
+        position: relative;
+        user-select: none;
+        margin-bottom: 3em;
+        width: 600px;
 
     }
 
     .skill_list {
-        display: inline-block;
+        display: inline-flex;
         padding: 10px;
         transition: transform 0.3s ease;
     }
 
     .skill {
+        color: white;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 3em;
         display: inline-block;
         margin-right: 10px;
         padding: 5px 10px;
-        background-color: #ccc;
         border-radius: 5px;
-        transition: opacity 0.3s ease;
+        transition: transform 0.1s ease, opacity 0.1s ease;
+        cursor: pointer;
     }
-
-    .skill:first-child {
-        opacity: 0.5;
-    }
-
-    .skill:last-child {
-        opacity: 0.5;
-    }
-
-    .skill:nth-child(2),
-    .skill:nth-last-child(2) {
-        opacity: 0.8;
-    }
-
 }
