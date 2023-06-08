@@ -1,0 +1,19 @@
+.container {
+    width: clamp(350px, 100%, 900px);
+    min-height: 610px;
+    border-radius: 50px;
+    background-color: #272727fd;
+    margin: 0 1.5%;
+    display: flex;
+    padding: 2em;
+    box-shadow: 0 0 20px;
+    color: rgb(100, 197, 241);
+    transition: transform 0.1s ease-in-out;
+}
+
+@media screen and (max-width: 1400px) {
+    .container {
+        width: clamp(350px, 87%, 900px);
+        margin: 0;
+    }
+}

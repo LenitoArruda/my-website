@@ -55,10 +55,9 @@ function Home() {
     }
   }, [selectedSkill]);
 
-  //When users left click verify if the target is the text sphere and attribute the skill selected to selectedSkill
+  //When users left click verify if the target is the text sphere or MenuSkills and attribute the skill selected to selectedSkill
   useEffect(() => {
     const handleMouseUp = (evt) => {
-      console.log(evt.target.className);
       if (
         evt.target.className.includes("tagcloud--item") ||
         evt.target.className.includes("MenuSkills_skill")
@@ -156,7 +155,7 @@ function Home() {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={0.2}
+          offset={0.3}
           speed={0.3}
           style={{
             filter: mode ? "blur(5px)" : "none",
@@ -216,7 +215,7 @@ function Home() {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={2.1}
+          offset={1.9}
           style={{
             zIndex: "-1",
           }}
@@ -224,7 +223,7 @@ function Home() {
           <Engines parallaxRef={parallaxRef} />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={phoneMode ? 2.15 : 2}>
+        <ParallaxLayer offset={phoneMode ? 2.15 : 1.9}>
           <div className={styles.skills_content} id="skills">
             <SessionTitle text="skills" />
             <div className={styles.skill_card}>

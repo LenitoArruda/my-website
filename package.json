@@ -22,6 +22,7 @@
     "react-scripts": "5.0.1",
     "react-scroll-parallax": "^3.4.2",
     "react-spring": "^9.7.1",
+    "react-transition-group": "^4.4.5",
     "TagCloud": "^2.3.2",
     "web-vitals": "^2.1.4"
   },

@@ -1,21 +1,28 @@
-.skill_menu {
+.menu {
     display: none;
 }
 
+
+
 @media screen and (max-width: 1400px) {
-    .skill_menu {
+    .menu {
         display: flex;
         white-space: nowrap;
         cursor: grab;
         overflow: hidden;
         position: relative;
         user-select: none;
-        margin-bottom: 3em;
-        width: 600px;
-
+        margin-bottom: 4em;
+        width: 67%;
+        border-radius: 30px;
+        background-color: #272727fd;
+        box-shadow: 0 0 20px;
+        color: rgb(100, 197, 241);
     }
 
-    .skill_list {
+
+
+    .list {
         display: inline-flex;
         padding: 10px;
         transition: transform 0.3s ease;
@@ -25,12 +32,21 @@
         color: white;
         font-weight: bold;
         text-transform: uppercase;
-        font-size: 3em;
+        font-size: 4em;
         display: inline-block;
         margin-right: 10px;
-        padding: 5px 10px;
         border-radius: 5px;
-        transition: transform 0.1s ease, opacity 0.1s ease;
+        transition: transform 0.1s ease, opacity 0.1s ease, color 0.3s;
         cursor: pointer;
     }
+
+    .next_skill {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    .hide_skill {
+        display: none;
+    }
+
 }

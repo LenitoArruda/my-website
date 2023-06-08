@@ -1,6 +1,7 @@
 import styles from "./SkillCard.module.css";
 import imgStar from "../../img/star.svg";
 import imgActiveStar from "../../img/active-star.svg";
+import CardContainer from "./CardContainer";
 
 function SkillCard({ name, description, stars, experience, img }) {
   let imgSkill = require("../../img/skills/html5.svg");
@@ -16,7 +17,7 @@ function SkillCard({ name, description, stars, experience, img }) {
   }
 
   return (
-    <div className={styles.skill}>
+    <CardContainer type="skills">
       <div className={styles.logo}>
         <img src={imgSkill} alt={name} />
       </div>
@@ -49,7 +50,7 @@ function SkillCard({ name, description, stars, experience, img }) {
           )}
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 }
 

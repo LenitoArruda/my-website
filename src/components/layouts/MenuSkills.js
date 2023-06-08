@@ -3,140 +3,31 @@ import styles from "./MenuSkills.module.css";
 
 function MenuSkills({ skills }) {
   const [menuSkills, setMenuSkills] = useState(skills);
-  const [dragStart, setDragStart] = useState(null);
-  const [positions, setPositions] = useState({});
-  const [scrollLeft, setScrollLeft] = useState(0);
   const menuRef = useRef(null);
-  const updateInterval = useRef(0); // Contador de atualizações
-  const updateThreshold = 10; // Limite de atualizações antes de chamar updateSkills()
-
-  const handleDragStart = (event) => {
-    setDragStart(event.clientX);
-    menuRef.current.classList.add(styles.grabbing);
-    updateSkills();
-  };
-
-  const handleDragMove = (event) => {
-    handleFirstLoad();
-    if (dragStart === null) return;
-
-    const scrollDistance = event.clientX - dragStart;
-    menuRef.current.scrollLeft -= scrollDistance;
-    setScrollLeft(menuRef.current.scrollLeft);
-    setDragStart(event.clientX);
-
-    // Verificar se o scroll alcançou o início ou o fim da lista
-    const scrollLeft = menuRef.current.scrollLeft;
-    const scrollWidth = menuRef.current.scrollWidth;
-    const clientWidth = menuRef.current.clientWidth;
-
-    const isScrollLeftEnd = scrollLeft <= 0;
-    const isScrollRightEnd = scrollLeft + clientWidth >= scrollWidth;
-
-    if (isScrollLeftEnd) {
-    } else if (isScrollRightEnd) {
-    }
-
-    // Incrementar o contador de atualizações
-    updateInterval.current++;
-
-    // Verificar se o limite de atualizações foi atingido
-    if (updateInterval.current >= updateThreshold) {
-      updateSkills();
-      updateInterval.current = 0; // Reiniciar o contador
-    }
-  };
 
   useEffect(() => {
     setMenuSkills(skills);
   }, [skills]);
 
-  const handleDragEnd = () => {
-    setDragStart(null);
-    menuRef.current.classList.remove(styles.grabbing);
-    updateSkills();
-  };
-
-  const updateSkills = () => {
-    const { initialLeft, initialRight } = positions;
-    const maxDistance = Math.max(initialRight - initialLeft, 1);
-    const centerPosition = (initialLeft + initialRight) / 2;
-
-    for (let i = 0; i < menuSkills.length; i++) {
-      const skillElement = menuRef.current.getElementsByClassName(styles.skill)[
-        i
-      ];
-
-      if (skillElement) {
-        const { left: skillLeft, right: skillRight } =
-          skillElement.getBoundingClientRect();
-        const skillPosition = (skillLeft + skillRight) / 2;
-
-        // Calcular a distância da skill em relação ao centro do elemento pai
-        const distanceToCenter = Math.abs(skillPosition - centerPosition);
-
-        // Calcular o fator de tamanho e opacidade com base na distância ao centro
-        const sizeFactor = 1 - distanceToCenter / maxDistance;
-        const opacity = sizeFactor < 0.2 ? 0 : sizeFactor;
-
-        // Aplicar os estilos de transformação e opacidade
-        const skillStyles = {
-          transform: `scale(${sizeFactor})`,
-          opacity: opacity,
-        };
-
-        skillElement.style.transform = skillStyles.transform;
-        skillElement.style.opacity = skillStyles.opacity;
-      }
-    }
-
-    // Verificar se ainda há atualizações pendentes
-    if (updateInterval.current < updateThreshold) {
-      requestAnimationFrame(updateSkills);
-    }
-  };
-
-  useEffect(() => {
-    const element = menuRef.current;
-    if (element) {
-      const { left: initialLeft, right: initialRight } =
-        element.getBoundingClientRect();
-      setPositions({ initialLeft, initialRight });
-      setScrollLeft(element.scrollLeft);
-    }
-  }, []);
-
-  useEffect(() => {
-    const updateSkillsOnResize = () => {
-      updateSkills();
-    };
-
-    window.addEventListener("resize", updateSkillsOnResize);
-
-    return () => {
-      window.removeEventListener("resize", updateSkillsOnResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    updateSkills();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  /**************************************************************************************/
-
   const [prevSkill, setPrevSkill] = useState([]);
+  const [currentSkill, setcurrentSkill] = useState([]);
+
+  useEffect(() => {
+    setPrevSkill(currentSkill);
+  }, [currentSkill]);
 
   const handleMouseUp = (evt) => {
-    if (evt.target.className.trim("skill")) {
-      setPrevSkill(evt.target);
+    if (evt.target.classList.contains(styles.skill)) {
+      const currentSkill = evt.target;
 
-      if (prevSkill.textContent) {
+      currentSkill.style.color = "rgb(68, 175, 223)";
+      currentSkill.style.textShadow = "0 0 30px rgb(68, 175, 223)";
+      setPrevSkill(currentSkill);
+
+      if (prevSkill !== currentSkill) {
         prevSkill.style.color = "";
         prevSkill.style.textShadow = "";
       }
-      evt.target.style.color = "rgb(68, 175, 223)";
-      evt.target.style.textShadow = "0 0 30px rgb(68, 175, 223)";
     }
   };
 
@@ -151,6 +42,7 @@ function MenuSkills({ skills }) {
       target.style.color = "rgb(68, 175, 223)";
       target.style.textShadow = "0 0 30px rgb(68, 175, 223)";
       setPrevSkill(target);
+      setcurrentSkill(target);
     }
   };
 
@@ -166,6 +58,18 @@ function MenuSkills({ skills }) {
 
     return null;
   };
+
+  const handleListMovement = (evt) => {
+    let listOfSkills = menuSkills;
+    const skillSelected = menuSkills.find(
+      (skill) => skill.name === evt.target.innerHTML
+    );
+    const index = menuSkills.indexOf(skillSelected);
+    if (index === 5) listOfSkills.push(listOfSkills.shift());
+    if (index === 3) listOfSkills.unshift(listOfSkills.pop());
+    setMenuSkills(listOfSkills);
+  };
+
   useEffect(() => {
     window.addEventListener("load", handleFirstLoad);
 
@@ -174,27 +78,22 @@ function MenuSkills({ skills }) {
     };
   }, []);
 
-  /**************************************************************************************/
+  const handleClassName = (index) => {
+    if (index === 4) return `${styles.skill}`;
+    if (index === 3 || index === 5)
+      return `${styles.skill} ${styles.next_skill}`;
+    return `${styles.hide_skill}`;
+  };
 
   return (
-    <div
-      className={styles.skill_menu}
-      ref={menuRef}
-      onMouseDown={handleDragStart}
-      onMouseMove={handleDragMove}
-      onMouseUp={handleDragEnd}
-      onMouseLeave={handleDragEnd}
-      onTouchStart={handleDragStart}
-      onTouchMove={handleDragMove}
-      onTouchEnd={handleDragEnd}
-      onClick={handleMouseUp}
-    >
-      <div
-        className={styles.skill_list}
-        style={{ transform: `translateX(-${scrollLeft}px)` }}
-      >
+    <div className={styles.menu} ref={menuRef} onClick={handleMouseUp}>
+      <div className={styles.list}>
         {menuSkills.map((skill, index) => (
-          <div key={index} className={styles.skill}>
+          <div
+            key={index}
+            className={handleClassName(index)}
+            onClick={handleListMovement}
+          >
             {skill.name}
           </div>
         ))}

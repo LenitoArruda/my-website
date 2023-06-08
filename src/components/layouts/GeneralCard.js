@@ -6,13 +6,14 @@ import imgNext from "../../img/next.svg";
 import imgPrevious from "../../img/previous.svg";
 
 import SkillsBox from "./SkillsBox";
+import CardContainer from "./CardContainer";
 
 function GeneralCard({ skills }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [slideForward, setSlideForward] = useState(false);
   const [slideBackward, setSlideBackward] = useState(false);
-
   const itemsPerPage = 5;
+
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentSkills = skills.slice(startIndex, endIndex);
@@ -35,7 +36,7 @@ function GeneralCard({ skills }) {
   }, [currentSkills]);
 
   return (
-    <div className={styles.skills}>
+    <CardContainer type="general">
       <div className={styles.info_header}>
         <h3 className={styles.info_title}>General</h3>
         <div className={styles.info_experience}>
@@ -48,7 +49,7 @@ function GeneralCard({ skills }) {
           <img
             src={imgNext}
             alt="previous"
-            className={styles.arrow_img}
+            className={`${styles.arrow_img} ${styles.left}`}
             onClick={handlePreviousPage}
             style={{ display: currentPage === 1 && "none" }}
           />
@@ -62,7 +63,7 @@ function GeneralCard({ skills }) {
           <img
             src={imgPrevious}
             alt="next"
-            className={styles.arrow_img}
+            className={`${styles.arrow_img} ${styles.right}`}
             onClick={handleNextPage}
             style={{
               display: currentPage * itemsPerPage >= skills.length && "none",
@@ -70,7 +71,7 @@ function GeneralCard({ skills }) {
           />
         </div>
       </div>
-    </div>
+    </CardContainer>
   );
 }
 
