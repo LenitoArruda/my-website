@@ -11,6 +11,7 @@ function MenuSkills({ skills }) {
 
   const [prevSkill, setPrevSkill] = useState([]);
   const [currentSkill, setcurrentSkill] = useState([]);
+  const [classAnimation, setClassAnimation] = useState(``);
 
   useEffect(() => {
     setPrevSkill(currentSkill);
@@ -65,8 +66,13 @@ function MenuSkills({ skills }) {
       (skill) => skill.name === evt.target.innerHTML
     );
     const index = menuSkills.indexOf(skillSelected);
-    if (index === 5) listOfSkills.push(listOfSkills.shift());
-    if (index === 3) listOfSkills.unshift(listOfSkills.pop());
+    if (index === 5 || index === 6) {
+      listOfSkills.push(listOfSkills.shift());
+      setClassAnimation(`${styles.move_right}`);
+    } else if (index === 3 || index === 2) {
+      listOfSkills.unshift(listOfSkills.pop());
+      setClassAnimation(`${styles.move_left}`);
+    }
     setMenuSkills(listOfSkills);
   };
 
@@ -79,9 +85,15 @@ function MenuSkills({ skills }) {
   }, []);
 
   const handleClassName = (index) => {
-    if (index === 4) return `${styles.skill}`;
-    if (index === 3 || index === 5)
-      return `${styles.skill} ${styles.next_skill}`;
+    if (index === 4) return `${styles.skill} ${classAnimation}`;
+    if (index === 3)
+      return `${styles.skill} ${styles.next_skill_left} ${classAnimation}`;
+    if (index === 2)
+      return `${styles.skill} ${styles.last_skill_left} ${classAnimation}`;
+    if (index === 6)
+      return `${styles.skill} ${styles.last_skill_rigth} ${classAnimation}`;
+    if (index === 5)
+      return `${styles.skill} ${styles.next_skill_rigth} ${classAnimation}`;
     return `${styles.hide_skill}`;
   };
 
