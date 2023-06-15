@@ -17,6 +17,9 @@ function MenuSkills({ skills }) {
     useState(``);
   const [thirdRightSkillAnimation, setThirdRightSkillAnimation] = useState(``);
   const [thirdLeftSkillAnimation, setThirdLeftSkillAnimation] = useState(``);
+  const [fourthLeftSkillAnimation, setFourthLeftSkillAnimation] = useState(``);
+  const [fourthRightSkillAnimation, setFourthRightSkillAnimation] =
+    useState(``);
 
   useEffect(() => {
     setPrevSkill(currentSkill);
@@ -55,7 +58,10 @@ function MenuSkills({ skills }) {
     setSecondRightSkillAnimation("");
     setThirdRightSkillAnimation("");
     setThirdLeftSkillAnimation("");
+    setFourthLeftSkillAnimation("");
+    setFourthRightSkillAnimation("");
   };
+
   const findElementByTextContent = (element, text, selector) => {
     const children = element.querySelectorAll(selector);
 
@@ -83,14 +89,15 @@ function MenuSkills({ skills }) {
       setSecondRightSkillAnimation(`${styles.second_right_left}`);
       setThirdRightSkillAnimation(`${styles.third_right_left}`);
       setThirdLeftSkillAnimation(`${styles.third_left_left}`);
+      setFourthRightSkillAnimation(`${styles.fourth_right_left}`);
     } else if (index === 3 || index === 2) {
       setTimeout(() => listOfSkills.unshift(listOfSkills.pop()), 200);
-
       setCenterSkillAnimation(`${styles.center_right}`);
       setSecondLeftSkillAnimation(`${styles.second_left_right}`);
       setSecondRightSkillAnimation(`${styles.second_right_right}`);
       setThirdLeftSkillAnimation(`${styles.third_left_right}`);
       setThirdRightSkillAnimation(`${styles.third_right_right}`);
+      setFourthLeftSkillAnimation(`${styles.fourth_left_right}`);
     }
   };
 
@@ -103,6 +110,8 @@ function MenuSkills({ skills }) {
   }, []);
 
   const handleClassName = (index) => {
+    if (index < 2)
+      return `${styles.skill} ${styles.fourth_skill_left} ${fourthLeftSkillAnimation}`;
     if (index === 4) return `${styles.skill} ${centerSkillAnimation}`;
     if (index === 3)
       return `${styles.skill} ${styles.second_skill_left} ${secondLeftSkillAnimation}`;
@@ -112,7 +121,7 @@ function MenuSkills({ skills }) {
       return `${styles.skill} ${styles.third_skill_rigth} ${thirdRightSkillAnimation}`;
     if (index === 5)
       return `${styles.skill} ${styles.second_skill_rigth} ${secondRightSkillAnimation}`;
-    return `${styles.hide_skill}`;
+    return `${styles.skill} ${styles.fourth_skill_rigth} ${fourthRightSkillAnimation}`;
   };
 
   return (
