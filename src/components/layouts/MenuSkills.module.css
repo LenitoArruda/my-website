@@ -10,7 +10,7 @@
         position: relative;
         user-select: none;
         margin-bottom: 4em;
-        width: 60%;
+        width: clamp(340px, 43%, 500px);
         height: 100px;
         border-radius: 50px;
         background-color: #272727fd;
@@ -24,7 +24,7 @@
         display: inline-flex;
         padding: 10px;
         transition: transform 0.3s ease;
-        margin-left: 180px;
+        margin-left: 330px;
 
         justify-content: center;
     }
@@ -465,4 +465,10 @@
         animation: fourth_right_left 0.5s forwards;
     }
 
+}
+
+@media screen and (max-width: 499px) {
+    .menu {
+        margin-left: -25px;
+    }
 }

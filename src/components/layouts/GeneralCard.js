@@ -51,7 +51,7 @@ function GeneralCard({ skills }) {
             alt="previous"
             className={`${styles.arrow_img} ${styles.left}`}
             onClick={handlePreviousPage}
-            style={{ display: currentPage === 1 && "none" }}
+            style={{ visibility: currentPage === 1 && "hidden" }}
           />
         </div>
         <SkillsBox
@@ -66,7 +66,8 @@ function GeneralCard({ skills }) {
             className={`${styles.arrow_img} ${styles.right}`}
             onClick={handleNextPage}
             style={{
-              display: currentPage * itemsPerPage >= skills.length && "none",
+              visibility:
+                currentPage * itemsPerPage >= skills.length && "hidden",
             }}
           />
         </div>

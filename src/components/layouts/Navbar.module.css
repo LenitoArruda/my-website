@@ -17,12 +17,12 @@
 
 .logo {
     margin-left: 2em;
-    width: 150px;
+    width: clamp(115px, 30vw, 150px);
     transition: 0.3s;
 }
 
 .logo:hover {
-    width: 155px;
+    width: clamp(125px, 32vw, 160px);
 }
 
 .logoHidden {
@@ -58,6 +58,7 @@
         flex-direction: row-reverse;
         justify-content: space-between;
         max-height: 100%;
+        align-items: center;
     }
 
     .navbar ul {

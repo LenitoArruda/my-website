@@ -215,7 +215,7 @@ function Home() {
         </ParallaxLayer>
 
         <ParallaxLayer
-          offset={1.9}
+          offset={phoneMode ? 2.75 : 1.85}
           style={{
             zIndex: "-1",
           }}
@@ -223,11 +223,11 @@ function Home() {
           <Engines parallaxRef={parallaxRef} />
         </ParallaxLayer>
 
-        <ParallaxLayer offset={phoneMode ? 2.15 : 1.9}>
+        <ParallaxLayer offset={phoneMode ? 2.3 : 1.85}>
           <div className={styles.skills_content} id="skills">
             <SessionTitle text="skills" />
             <div className={styles.skill_card}>
-              <MenuSkills skills={skills} />
+              <MenuSkills skills={skills} skill={skill} setSkill={setSkill} />
               <TextShpere />
 
               {(!skill._id || skill.name === "general") && (

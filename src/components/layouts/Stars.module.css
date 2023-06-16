@@ -6,16 +6,16 @@
 @media screen and (max-width: 900px) {
 
     .star_img {
-        width: 1.5em;
+        width: 1.3em;
         padding-right: 0.1em;
     }
 
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 490px) {
 
     .star_img {
-        width: 1.3em;
+        width: 1em;
         padding-right: 0.1em;
     }
 

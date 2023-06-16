@@ -13,7 +13,7 @@
 
 .engine_1 {
     position: absolute;
-    width: clamp(310px, 25%, 350px);
+    width: clamp(250px, 25%, 350px);
     right: -200px;
     bottom: 49%;
 
@@ -21,7 +21,7 @@
 
 .engine_2 {
     position: absolute;
-    width: clamp(310px, 25%, 350px);
+    width: clamp(250px, 25%, 350px);
     right: 75px;
     bottom: 25%;
 
@@ -29,7 +29,7 @@
 
 .engine_3 {
     position: absolute;
-    width: clamp(310px, 25%, 350px);
+    width: clamp(250px, 25%, 350px);
     right: -200px;
     bottom: 0%;
 }

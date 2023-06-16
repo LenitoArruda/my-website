@@ -48,7 +48,8 @@
     width: 100px;
     height: 100px;
     display: flex;
-    transition: 0.5s;
+    transition-property: width, visibility;
+    transition-duration: 0.5s, 0s;
 }
 
 .arrow_img:hover {
@@ -114,19 +115,41 @@
     }
 
     .left {
-        position: absolute;
-        left: 23%;
+        position: flex;
+        margin-left: -160px;
+        margin-top: -10px;
     }
 
     .right {
-        position: absolute;
-        right: 17%;
+        position: flex;
+        margin-top: -100px;
+        margin-left: 120px;
     }
 
     .arrow_img {
-        padding-bottom: 30px;
+        bottom: 50px;
     }
 
+
+
+}
+
+
+@media screen and (max-width:499px) {
+
+    .info_title {
+        font-size: 2.5em;
+    }
+
+    .left {
+        margin-top: -30px;
+        margin-left: -120px;
+    }
+
+    .right {
+
+        margin-left: 80px;
+    }
 
 
 }
